@@ -25,28 +25,29 @@ Or directly on your browser, simply download your file from the following:
 ```
 ## Usage
 ```
-const { BTreeNode, BTree } = require('@dsinjs/linked-list');
+const { LinkedListElement } = require('@dsinjs/linked-list');
 ```
 ```
-var node = new BTreeNode({ value: 10 });
-var nodel = new BTreeNode({ value: 15, lNode: node });
+var elem = new LinkedListElement(30);
+var elem2 = new LinkedListElement(15, elem);
+elem2.toString(); // => 1530
 ```
 ```
-var tree = new BTree(10);
-tree.insert(20);
-tree.insert(30);
-tree.delete(30);
-tree.toArray(); // [{value:10,...},{value:20,...}]
+var lList = new LinkedList(10);
+lList.insert(20);
+lList.insert(30);
+lList.delete(30);
+lList.toArray(); // [10,20]
 ```
 ```
 // Classic ES6 iterations
-for (const node of tree) {
-    console.log(node.value); // 10, 20
+for (const data of lList) {
+    console.log(data); // 10, 20
 }
 ```
 ## All Features:
-- All Binary Tree data structure functionality.
-- 25+ Binary Tree functions.
+- All Linked List data structure functionality.
+- 25+ Linked List functions.
 - Main functions like insert(), delete(), each(), find(), sort() etc.
 - Extended functions like entries(), Symbol.iterator, supports `for...of` loops.
 - Conversion methods like fromArray(), toArray(), toString(), toJSON().
