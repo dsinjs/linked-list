@@ -37,7 +37,7 @@ var lList = new LinkedList(10);
 lList.insert(20);
 lList.insert(30);
 lList.delete(30);
-lList.toArray(); // [10,20]
+lList.toArray(); // => [10,20]
 ```
 ```
 // Classic ES6 iterations
