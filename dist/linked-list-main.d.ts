@@ -82,7 +82,7 @@ export declare class LinkedList<T> {
      * Returns element at given location.
      * @param {number} index Index to find the element.
      * @public
-     * @method traverse
+     * @method get
      * @member
      * @public
      * @returns {{T | null}} Returns element found at given element, if its not reachable returns null.

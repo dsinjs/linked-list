@@ -6,7 +6,22 @@
     -   [Examples][2]
     -   [next][3]
 -   [toJSON][4]
--   [toString][5]
+    -   [Examples][5]
+-   [toString][6]
+    -   [Examples][7]
+-   [LinkedList][8]
+    -   [Examples][9]
+-   [insert][10]
+    -   [Parameters][11]
+    -   [Examples][12]
+-   [push][13]
+    -   [Parameters][14]
+    -   [Examples][15]
+-   [traverse][16]
+    -   [Examples][17]
+-   [get][18]
+    -   [Parameters][19]
+    -   [Examples][20]
 
 ## LinkedListElement
 
@@ -22,11 +37,26 @@ console.log(elem2.next.data); // 15
 
 ### next
 
-Type: [LinkedListElement][6]&lt;T>
+Type: [LinkedListElement][21]&lt;T>
 
 ## toJSON
 
 Converts current element and all next elements in json format.
+
+### Examples
+
+```javascript
+var elem = new LinkedListElement(30);
+var elem2 = new LinkedListElement(15, elem);
+elem2.toJSON(); // =>
+{
+ "data": 15,
+ "next": {
+   "data": 30,
+   "next": null
+ }
+}
+```
 
 Returns **LinkedListElementStruct&lt;T>** valid json object.
 
@@ -34,7 +64,97 @@ Returns **LinkedListElementStruct&lt;T>** valid json object.
 
 Converts current element and all next elements in string format.
 
-Returns **[string][7]** valid string.
+### Examples
+
+```javascript
+var elem = new LinkedListElement(30);
+var elem2 = new LinkedListElement(15, elem);
+elem2.toString(); // => 1530
+```
+
+Returns **[string][22]** valid string.
+
+## LinkedList
+
+Main Linked List class, contains start node and basically the whole list.
+
+### Examples
+
+```javascript
+var lList = new LinkedList(10);
+lList.insert(20);
+lList.insert(30);
+lList.delete(30);
+lList.toArray(); // => [10,20]
+```
+
+## insert
+
+Inserts the given element at the end of the Linked List.
+
+### Parameters
+
+-   `item` **T** New element to be inserted.
+
+### Examples
+
+```javascript
+var elem = new LinkedListElement(30);
+var elem2 = new LinkedListElement(15, elem);
+elem2.insert(60);
+```
+
+Returns **[LinkedListElement][21]&lt;T>** newly added element instance.
+
+## push
+
+Pushes the given element at the end of the Linked List.
+
+### Parameters
+
+-   `item` **T** New element to be pushed.
+
+### Examples
+
+```javascript
+var elem = new LinkedListElement(30);
+var elem2 = new LinkedListElement(15, elem);
+elem2.push(60);
+```
+
+Returns **[LinkedListElement][21]&lt;T>** newly added element instance.
+
+## traverse
+
+Traverses the whole list and calls given callback function for each element.
+
+### Examples
+
+```javascript
+var dataPrinter = (el) => { console.log(el.data); };
+var lList = new LinkedList(15);
+lList.insert(30);
+lList.traverse(dataPrinter); // => 15...20
+```
+
+Returns **void** Returns undefined.
+
+## get
+
+Returns element at given location.
+
+### Parameters
+
+-   `index` **[number][23]** Index to find the element.
+
+### Examples
+
+```javascript
+var lList = new LinkedList(15);
+lList.insert(30);
+lList.insert(45);
+lList.get(2); // => 45
+```
 
 [1]: #linkedlistelement
 
@@ -44,8 +164,40 @@ Returns **[string][7]** valid string.
 
 [4]: #tojson
 
-[5]: #tostring
+[5]: #examples-1
 
-[6]: #linkedlistelement
+[6]: #tostring
 
-[7]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[7]: #examples-2
+
+[8]: #linkedlist
+
+[9]: #examples-3
+
+[10]: #insert
+
+[11]: #parameters
+
+[12]: #examples-4
+
+[13]: #push
+
+[14]: #parameters-1
+
+[15]: #examples-5
+
+[16]: #traverse
+
+[17]: #examples-6
+
+[18]: #get
+
+[19]: #parameters-2
+
+[20]: #examples-7
+
+[21]: #linkedlistelement
+
+[22]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+
+[23]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
