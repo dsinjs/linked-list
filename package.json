@@ -1,0 +1,49 @@
+{
+  "name": "@dsinjs/linked-list",
+  "version": "1.0.0",
+  "description": "Binary Trees for your DS in JS",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "mocha",
+    "build": "npm run buildts && npm run browserify && npm run uglifyjs",
+    "buildts": "tsc",
+    "babel": "babel src -d dist",
+    "browserify": "browserify dist/index.js -o dist/dsinjs-linkedlist.js",
+    "uglifyjs": "uglifyjs --compress --mangle --output dist/dsinjs-linkedlist.min.js -- dist/dsinjs-linkedlist.js",
+    "doc": "npm run documentmd && npm run documenthtml",
+    "documentmd": "documentation build dist/index.js -f md -o DOCUMENTATION.md",
+    "documenthtml": "documentation build dist/index.js -f html -o docs"
+  },
+  "files": [
+    "src",
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dsinjs/linked-list.git"
+  },
+  "keywords": [
+    "Node",
+    "JS",
+    "DataStructure",
+    "Trees",
+    "Binary",
+    "Trees"
+  ],
+  "author": "Siddhesh Kulkarni",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dsinjs/linked-list/issues"
+  },
+  "homepage": "https://github.com/dsinjs/linked-list#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-latest": "^6.24.1",
+    "browserify": "^17.0.0",
+    "mocha": "^8.2.1",
+    "should": "^13.2.3",
+    "tslint": "^6.1.3",
+    "uglify-js": "^3.12.0"
+  }
+}
