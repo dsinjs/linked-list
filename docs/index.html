@@ -77,6 +77,16 @@
               
                 
                 <li><a
+                  href='#tostring'
+                  class="">
+                  toString
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
                   href='#linkedlist'
                   class=" toggle-sibling">
                   LinkedList
@@ -168,6 +178,16 @@
                   href='#get'
                   class="">
                   get
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#toarray'
+                  class="">
+                  toArray
                   
                 </a>
                 
@@ -434,6 +454,72 @@ elem2.toJSON(); <span class="hljs-comment">// =&gt;</span>
       <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">var</span> elem = <span class="hljs-keyword">new</span> LinkedListElement(<span class="hljs-number">30</span>);
 <span class="hljs-keyword">var</span> elem2 = <span class="hljs-keyword">new</span> LinkedListElement(<span class="hljs-number">15</span>, elem);
 elem2.toString(); <span class="hljs-comment">// =&gt; 1530</span></pre>
+    
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='tostring'>
+      toString
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Returns string form of the linked list.</p>
+
+    <div class='pre p1 fill-light mt0'>toString</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>:
+        Returns string form of the linked list.
+
+      
+    
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">var</span> lList = <span class="hljs-keyword">new</span> LinkedList(<span class="hljs-number">1</span>);
+lList.push(<span class="hljs-number">2</span>);
+lList.toString(); <span class="hljs-comment">// =&gt; "12"</span></pre>
     
   
 
@@ -1092,6 +1178,73 @@ lList.traverse(dataPrinter); <span class="hljs-comment">// =&gt; 15...20</span><
 lList.insert(<span class="hljs-number">30</span>);
 lList.insert(<span class="hljs-number">45</span>);
 lList.get(<span class="hljs-number">2</span>); <span class="hljs-comment">// =&gt; 45</span></pre>
+    
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='toarray'>
+      toArray
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Returns array form of the linked list.</p>
+
+    <div class='pre p1 fill-light mt0'>toArray</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;T></code>:
+        Returns array form of the linked list.
+
+      
+    
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">var</span> lList = <span class="hljs-keyword">new</span> LinkedList(<span class="hljs-number">1</span>);
+lList.push(<span class="hljs-number">2</span>);
+lList.push(<span class="hljs-number">3</span>);
+lList.toArray(); <span class="hljs-comment">// =&gt; [1, 2, 3]</span></pre>
     
   
 

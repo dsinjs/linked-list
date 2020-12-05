@@ -158,6 +158,31 @@ export declare class LinkedList<T> {
      */
     get(index: number): T | null;
     /**
+     * Returns string form of the linked list.
+     * @public
+     * @method toString
+     * @member
+     * @returns {string} Returns string form of the linked list.
+     * @example
+     * var lList = new LinkedList(1);
+     * lList.push(2);
+     * lList.toString(); // => "12"
+     */
+    toString(): string;
+    /**
+     * Returns array form of the linked list.
+     * @public
+     * @method toArray
+     * @member
+     * @returns {T[]} Returns array form of the linked list.
+     * @example
+     * var lList = new LinkedList(1);
+     * lList.push(2);
+     * lList.push(3);
+     * lList.toArray(); // => [1, 2, 3]
+     */
+    toArray(): T[];
+    /**
      * A static method, Creates a Linked List instance from given array.
      * @param {T[]} array Array of elements.
      * @public

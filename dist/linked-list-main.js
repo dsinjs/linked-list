@@ -228,6 +228,41 @@ var LinkedList = /** @class */ (function () {
         return retElem;
     };
     /**
+     * Returns string form of the linked list.
+     * @public
+     * @method toString
+     * @member
+     * @returns {string} Returns string form of the linked list.
+     * @example
+     * var lList = new LinkedList(1);
+     * lList.push(2);
+     * lList.toString(); // => "12"
+     */
+    LinkedList.prototype.toString = function () {
+        return this._start.toString();
+    };
+    /**
+     * Returns array form of the linked list.
+     * @public
+     * @method toArray
+     * @member
+     * @returns {T[]} Returns array form of the linked list.
+     * @example
+     * var lList = new LinkedList(1);
+     * lList.push(2);
+     * lList.push(3);
+     * lList.toArray(); // => [1, 2, 3]
+     */
+    LinkedList.prototype.toArray = function () {
+        var retArr = [];
+        var curr = this._start;
+        while (curr !== null) {
+            retArr.push(curr.data);
+            curr = curr.next;
+        }
+        return retArr;
+    };
+    /**
      * A static method, Creates a Linked List instance from given array.
      * @param {T[]} array Array of elements.
      * @public

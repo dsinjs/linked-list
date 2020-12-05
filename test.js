@@ -118,6 +118,24 @@ describe('@dsinjs/linked-list', () => {
       should.equal(lList._start.data, 10);
       done();
     });
+    it('toString()', (done) => {
+      var lList = LinkedList.fromArray([1, 2, 3, 4, 5]);
+      lList.length.should.equal(5);
+      lList.toString().should.equal("12345");
+      done();
+    });
+    it('toArray()', (done) => {
+      var lList = LinkedList.fromArray([1, 2, 3, 4, 5]);
+      lList.length.should.equal(5);
+      var listArr = lList.toArray();
+      listArr.length.should.equal(5);
+      listArr[0].should.equal(1);
+      listArr[1].should.equal(2);
+      listArr[2].should.equal(3);
+      listArr[3].should.equal(4);
+      listArr[4].should.equal(5);
+      done();
+    });
     it('fromArray()', (done) => {
       var lList = LinkedList.fromArray([1, 2, 3, 4, 5]);
       lList._start.data.should.equal(1);
