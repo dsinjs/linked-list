@@ -24,11 +24,35 @@ export declare class ExtendedWindow extends Window {
 export declare class LinkedList<T> {
     /**
      * @property _start
-     * Is the starting element of the list
+     * Is the starting element of the list.
      * @type {LinkedListElement<T>}
      * @private
+     * @member
+     * @property
      */
     private _start;
+    /**
+     * @property _length
+     * Private member of linked list containing length of the list.
+     * @type {number}
+     * @private
+     * @member
+     * @property
+     */
+    private _length;
+    /**
+     * @property length
+     * Readonly, Public member of linked list containing length of the list.
+     * @type {number}
+     * @public
+     * @member
+     * @property
+     * @readonly
+     * @example
+     * var lList = new LinkedList(15);
+     * lList.length; // => 1
+     */
+    get length(): number;
     /**
      * Standard constructor, accepts data values as LinkedListElement or T (actual data).
      * @param {LinkedListElement<T> | T} startElem Starting element of your linked list.
@@ -40,12 +64,11 @@ export declare class LinkedList<T> {
      * @public
      * @method insert
      * @member
-     * @public
      * @returns {LinkedListElement<T>} newly added element instance.
      * @example
-     * var elem = new LinkedListElement(30);
-     * var elem2 = new LinkedListElement(15, elem);
-     * elem2.insert(60);
+     * var elem = new LinkedList(30);
+     * elem.insert(15);
+     * elem.insert(60);
      */
     insert(item: T): LinkedListElement<T>;
     /**
@@ -54,14 +77,57 @@ export declare class LinkedList<T> {
      * @public
      * @method push
      * @member
-     * @public
      * @returns {LinkedListElement<T>} newly added element instance.
      * @example
-     * var elem = new LinkedListElement(30);
-     * var elem2 = new LinkedListElement(15, elem);
-     * elem2.push(60);
+     * var elem = new LinkedList(30);
+     * elem.insert(15);
+     * elem.insert(60);
      */
     push(item: T): LinkedListElement<T>;
+    /**
+     * Deletes the given element if present and returns element instance otherwise returns null.
+     * @param {T} item New element to be pushed.
+     * @public
+     * @method delete
+     * @member
+     * @returns {LinkedListElement<T> | null} Returns deleted elemnt or null.
+     * @example
+     * var elem = new LinkedList(30);
+     * elem.insert(15);
+     * elem.insert(60);
+     * elem.delete(15); // => { data: 15, next: null }
+     * elem.delete(50); // null
+     */
+    delete(item: T): LinkedListElement<T> | null;
+    /**
+     * Removes last element in the linked list and returns it.
+     * @public
+     * @method pop
+     * @member
+     * @returns {LinkedListElement<T> | null} Returns deleted elemnt or null.
+     * @example
+     * var elem = new LinkedList(30);
+     * elem.insert(15);
+     * elem.insert(60);
+     * elem.pop(15); // => { data: 15, next: null }
+     * elem.pop(60); // null
+     */
+    pop(): LinkedListElement<T> | null;
+    /**
+     * Checks for given item in the entire list and returns true if available.
+     * @param {T} item New element to be checked.
+     * @public
+     * @method has
+     * @member
+     * @returns {boolean} newly added element instance.
+     * @example
+     * var elem = new LinkedList(30);
+     * elem.insert(15);
+     * elem.insert(60);
+     * elem.has(15); // true
+     * elem.has(50); // false
+     */
+    has(item: T): boolean;
     /**
      * Traverses the whole list and calls given callback function for each element.
      * @param {{(elem :LinkedListElement<T>, index: number) => boolean}} callback Callback function to be called
@@ -69,7 +135,6 @@ export declare class LinkedList<T> {
      * @public
      * @method traverse
      * @member
-     * @public
      * @returns {void} Returns undefined.
      * @example
      * var dataPrinter = (el) => { console.log(el.data); };
@@ -84,7 +149,6 @@ export declare class LinkedList<T> {
      * @public
      * @method get
      * @member
-     * @public
      * @returns {{T | null}} Returns element found at given element, if its not reachable returns null.
      * @example
      * var lList = new LinkedList(15);
@@ -93,4 +157,16 @@ export declare class LinkedList<T> {
      * lList.get(2); // => 45
      */
     get(index: number): T | null;
+    /**
+     * A static method, Creates a Linked List instance from given array.
+     * @param {T[]} array Array of elements.
+     * @public
+     * @method fromArray
+     * @static
+     * @returns {LinkedList<T>} Returns new linked list instance with all elements in array.
+     * @example
+     * var lList = LinkedList.fromArray([1, 2, 3]);
+     * lList.length; // => 3
+     */
+    static fromArray<T>(array: T[]): LinkedList<T>;
 }

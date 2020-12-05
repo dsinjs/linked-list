@@ -19,23 +19,50 @@ var LinkedList = /** @class */ (function () {
      * @param {LinkedListElement<T> | T} startElem Starting element of your linked list.
      */
     function LinkedList(startElem) {
+        /**
+         * @property _length
+         * Private member of linked list containing length of the list.
+         * @type {number}
+         * @private
+         * @member
+         * @property
+         */
+        this._length = 1;
         this._start = startElem;
         if (!(this._start instanceof linked_list_element_1.LinkedListElement)) {
             this._start = new linked_list_element_1.LinkedListElement(this._start);
         }
     }
+    Object.defineProperty(LinkedList.prototype, "length", {
+        /**
+         * @property length
+         * Readonly, Public member of linked list containing length of the list.
+         * @type {number}
+         * @public
+         * @member
+         * @property
+         * @readonly
+         * @example
+         * var lList = new LinkedList(15);
+         * lList.length; // => 1
+         */
+        get: function () {
+            return this._length;
+        },
+        enumerable: false,
+        configurable: true
+    });
     /**
      * Inserts the given element at the end of the Linked List.
      * @param {T} item New element to be inserted.
      * @public
      * @method insert
      * @member
-     * @public
      * @returns {LinkedListElement<T>} newly added element instance.
      * @example
-     * var elem = new LinkedListElement(30);
-     * var elem2 = new LinkedListElement(15, elem);
-     * elem2.insert(60);
+     * var elem = new LinkedList(30);
+     * elem.insert(15);
+     * elem.insert(60);
      */
     LinkedList.prototype.insert = function (item) {
         var prev = this._start;
@@ -45,6 +72,7 @@ var LinkedList = /** @class */ (function () {
             prev = prev.next;
         }
         finalEl.next = new linked_list_element_1.LinkedListElement(item);
+        this._length++;
         return finalEl.next;
     };
     /**
@@ -53,15 +81,96 @@ var LinkedList = /** @class */ (function () {
      * @public
      * @method push
      * @member
-     * @public
      * @returns {LinkedListElement<T>} newly added element instance.
      * @example
-     * var elem = new LinkedListElement(30);
-     * var elem2 = new LinkedListElement(15, elem);
-     * elem2.push(60);
+     * var elem = new LinkedList(30);
+     * elem.insert(15);
+     * elem.insert(60);
      */
     LinkedList.prototype.push = function (item) {
         return this.insert(item);
+    };
+    /**
+     * Deletes the given element if present and returns element instance otherwise returns null.
+     * @param {T} item New element to be pushed.
+     * @public
+     * @method delete
+     * @member
+     * @returns {LinkedListElement<T> | null} Returns deleted elemnt or null.
+     * @example
+     * var elem = new LinkedList(30);
+     * elem.insert(15);
+     * elem.insert(60);
+     * elem.delete(15); // => { data: 15, next: null }
+     * elem.delete(50); // null
+     */
+    LinkedList.prototype.delete = function (item) {
+        var curr = this._start;
+        var prev = this._start;
+        while (curr !== null) {
+            if (item === curr.data) {
+                break;
+            }
+            prev = curr;
+            curr = curr.next;
+        }
+        if (prev && curr) {
+            prev.next = curr.next;
+            curr.next = null;
+            this._length--;
+        }
+        return curr;
+    };
+    /**
+     * Removes last element in the linked list and returns it.
+     * @public
+     * @method pop
+     * @member
+     * @returns {LinkedListElement<T> | null} Returns deleted elemnt or null.
+     * @example
+     * var elem = new LinkedList(30);
+     * elem.insert(15);
+     * elem.insert(60);
+     * elem.pop(15); // => { data: 15, next: null }
+     * elem.pop(60); // null
+     */
+    LinkedList.prototype.pop = function () {
+        var curr = this._start;
+        var prev = this._start;
+        while (curr.next !== null) {
+            prev = curr;
+            curr = curr.next;
+        }
+        prev.next = null;
+        if (curr === this._start) {
+            return null;
+        }
+        this._length--;
+        return curr;
+    };
+    /**
+     * Checks for given item in the entire list and returns true if available.
+     * @param {T} item New element to be checked.
+     * @public
+     * @method has
+     * @member
+     * @returns {boolean} newly added element instance.
+     * @example
+     * var elem = new LinkedList(30);
+     * elem.insert(15);
+     * elem.insert(60);
+     * elem.has(15); // true
+     * elem.has(50); // false
+     */
+    LinkedList.prototype.has = function (item) {
+        var curr = this._start;
+        while (curr !== null) {
+            if (curr.data === item) {
+                return true;
+            }
+            curr = curr.next;
+        }
+        return false;
     };
     /**
      * Traverses the whole list and calls given callback function for each element.
@@ -70,7 +179,6 @@ var LinkedList = /** @class */ (function () {
      * @public
      * @method traverse
      * @member
-     * @public
      * @returns {void} Returns undefined.
      * @example
      * var dataPrinter = (el) => { console.log(el.data); };
@@ -98,7 +206,6 @@ var LinkedList = /** @class */ (function () {
      * @public
      * @method get
      * @member
-     * @public
      * @returns {{T | null}} Returns element found at given element, if its not reachable returns null.
      * @example
      * var lList = new LinkedList(15);
@@ -119,6 +226,29 @@ var LinkedList = /** @class */ (function () {
             counter++;
         }
         return retElem;
+    };
+    /**
+     * A static method, Creates a Linked List instance from given array.
+     * @param {T[]} array Array of elements.
+     * @public
+     * @method fromArray
+     * @static
+     * @returns {LinkedList<T>} Returns new linked list instance with all elements in array.
+     * @example
+     * var lList = LinkedList.fromArray([1, 2, 3]);
+     * lList.length; // => 3
+     */
+    LinkedList.fromArray = function (array) {
+        var currIndex = 1;
+        var lList = new LinkedList(array[0]);
+        var curr = lList._start;
+        while (currIndex !== array.length) {
+            curr.next = new linked_list_element_1.LinkedListElement(array[currIndex]);
+            curr = curr.next;
+            currIndex++;
+            lList._length++;
+        }
+        return lList;
     };
     return LinkedList;
 }());

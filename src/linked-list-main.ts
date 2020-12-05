@@ -30,11 +30,39 @@ declare let window: ExtendedWindow;
 export class LinkedList<T> {
   /**
    * @property _start
-   * Is the starting element of the list
+   * Is the starting element of the list.
    * @type {LinkedListElement<T>}
    * @private
+   * @member
+   * @property
    */
   private _start: LinkedListElement<T>;
+
+  /**
+   * @property _length
+   * Private member of linked list containing length of the list.
+   * @type {number}
+   * @private
+   * @member
+   * @property
+   */
+  private _length: number = 1;
+
+  /**
+   * @property length
+   * Readonly, Public member of linked list containing length of the list.
+   * @type {number}
+   * @public
+   * @member
+   * @property
+   * @readonly
+   * @example
+   * var lList = new LinkedList(15);
+   * lList.length; // => 1
+   */
+  get length(): number {
+    return this._length;
+  }
 
   /**
    * Standard constructor, accepts data values as LinkedListElement or T (actual data).
@@ -54,12 +82,11 @@ export class LinkedList<T> {
    * @public
    * @method insert
    * @member
-   * @public
    * @returns {LinkedListElement<T>} newly added element instance.
    * @example
-   * var elem = new LinkedListElement(30);
-   * var elem2 = new LinkedListElement(15, elem);
-   * elem2.insert(60);
+   * var elem = new LinkedList(30);
+   * elem.insert(15);
+   * elem.insert(60);
    */
   insert(item: T): LinkedListElement<T> {
     let prev: LinkedListElement<T> | null = this._start;
@@ -69,6 +96,7 @@ export class LinkedList<T> {
       prev = prev.next;
     }
     finalEl.next = new LinkedListElement(item);
+    this._length++;
     return finalEl.next;
   }
 
@@ -78,15 +106,99 @@ export class LinkedList<T> {
    * @public
    * @method push
    * @member
-   * @public
    * @returns {LinkedListElement<T>} newly added element instance.
    * @example
-   * var elem = new LinkedListElement(30);
-   * var elem2 = new LinkedListElement(15, elem);
-   * elem2.push(60);
+   * var elem = new LinkedList(30);
+   * elem.insert(15);
+   * elem.insert(60);
    */
   push(item: T): LinkedListElement<T> {
     return this.insert(item);
+  }
+
+  /**
+   * Deletes the given element if present and returns element instance otherwise returns null.
+   * @param {T} item New element to be pushed.
+   * @public
+   * @method delete
+   * @member
+   * @returns {LinkedListElement<T> | null} Returns deleted elemnt or null.
+   * @example
+   * var elem = new LinkedList(30);
+   * elem.insert(15);
+   * elem.insert(60);
+   * elem.delete(15); // => { data: 15, next: null }
+   * elem.delete(50); // null
+   */
+  delete(item: T): LinkedListElement<T> | null {
+    let curr: LinkedListElement<T> | null = this._start;
+    let prev: LinkedListElement<T> | null = this._start;
+    while (curr !== null) {
+      if (item === curr.data) {
+        break;
+      }
+      prev = curr;
+      curr = curr.next;
+    }
+    if (prev && curr) {
+      prev.next = curr.next;
+      curr.next = null;
+      this._length--;
+    }
+    return curr;
+  }
+
+  /**
+   * Removes last element in the linked list and returns it.
+   * @public
+   * @method pop
+   * @member
+   * @returns {LinkedListElement<T> | null} Returns deleted elemnt or null.
+   * @example
+   * var elem = new LinkedList(30);
+   * elem.insert(15);
+   * elem.insert(60);
+   * elem.pop(15); // => { data: 15, next: null }
+   * elem.pop(60); // null
+   */
+  pop(): LinkedListElement<T> | null {
+    let curr: LinkedListElement<T> | null = this._start;
+    let prev: LinkedListElement<T> | null = this._start;
+    while (curr.next !== null) {
+      prev = curr;
+      curr = curr.next;
+    }
+    prev.next = null;
+    if (curr === this._start) {
+      return null;
+    }
+    this._length--;
+    return curr;
+  }
+
+  /**
+   * Checks for given item in the entire list and returns true if available.
+   * @param {T} item New element to be checked.
+   * @public
+   * @method has
+   * @member
+   * @returns {boolean} newly added element instance.
+   * @example
+   * var elem = new LinkedList(30);
+   * elem.insert(15);
+   * elem.insert(60);
+   * elem.has(15); // true
+   * elem.has(50); // false
+   */
+  has(item: T): boolean {
+    let curr: LinkedListElement<T> | null = this._start;
+    while (curr !== null) {
+      if (curr.data === item) {
+        return true;
+      }
+      curr = curr.next;
+    }
+    return false;
   }
 
   /**
@@ -96,7 +208,6 @@ export class LinkedList<T> {
    * @public
    * @method traverse
    * @member
-   * @public
    * @returns {void} Returns undefined.
    * @example
    * var dataPrinter = (el) => { console.log(el.data); };
@@ -125,7 +236,6 @@ export class LinkedList<T> {
    * @public
    * @method get
    * @member
-   * @public
    * @returns {{T | null}} Returns element found at given element, if its not reachable returns null.
    * @example
    * var lList = new LinkedList(15);
@@ -146,6 +256,32 @@ export class LinkedList<T> {
       counter++;
     }
     return retElem;
+  }
+
+  /**
+   * A static method, Creates a Linked List instance from given array.
+   * @param {T[]} array Array of elements.
+   * @public
+   * @method fromArray
+   * @static
+   * @returns {LinkedList<T>} Returns new linked list instance with all elements in array.
+   * @example
+   * var lList = LinkedList.fromArray([1, 2, 3]);
+   * lList.length; // => 3
+   */
+  static fromArray<T>(array: T[]): LinkedList<T> {
+    let currIndex: number = 1;
+    const lList = new LinkedList(array[0]);
+    let curr = lList._start;
+
+    while (currIndex !== array.length) {
+      curr.next = new LinkedListElement(array[currIndex]);
+      curr = curr.next;
+      currIndex++;
+      lList._length++;
+    }
+
+    return lList;
   }
 }
 

@@ -1,12 +1,12 @@
 # @dsinjs/linked-list
-> Data structure in your JavaScript code, Binary Trees.
+> Data structure in your JavaScript code, Linked Lists.
 
 [![Build Status](https://travis-ci.com/dsinjs/linked-list.svg?branch=main)](https://travis-ci.com/dsinjs/linked-list)
 ![Node.js CI](https://github.com/dsinjs/linked-list/workflows/Node.js%20CI/badge.svg?branch=main)
 
 ## Overview
 ![linked-list](img/Linkedlist.png)  
-Binary Tree in Javascript
+Linked List in JavaScript
 - A linked list is a linear data structure, in which the elements are not stored at contiguous memory locations.
 - The elements in a linked list are linked using pointers.
 - Head is generally used as a pointer currently pointing to an element.
@@ -25,12 +25,7 @@ Or directly on your browser, simply download your file from the following:
 ```
 ## Usage
 ```
-const { LinkedListElement } = require('@dsinjs/linked-list');
-```
-```
-var elem = new LinkedListElement(30);
-var elem2 = new LinkedListElement(15, elem);
-elem2.toString(); // => 1530
+const { LinkedListElement, LinkedList } = require('@dsinjs/linked-list');
 ```
 ```
 var lList = new LinkedList(10);
@@ -38,6 +33,11 @@ lList.insert(20);
 lList.insert(30);
 lList.delete(30);
 lList.toArray(); // => [10,20]
+```
+```
+var elem = new LinkedListElement(30);
+var elem2 = new LinkedListElement(15, elem);
+elem2.toString(); // => 1530
 ```
 ```
 // Classic ES6 iterations
@@ -53,8 +53,9 @@ for (const data of lList) {
 - Conversion methods like fromArray(), toArray(), toString(), toJSON().
 
 ## Complete Documentation
-Checkout [DOCUMENTATION.md](DOCUMENTATION.md) for complete documentation or View Documentation online at [https://dsinjs.github.io/linked-list/](https://dsinjs.github.io/linked-list/)
-> Note: May need to use polyfills for Array.entries(), to make BTree work in older browsers like IE11.
+Checkout [DOCUMENTATION.md](DOCUMENTATION.md) for complete documentation or View Documentation online at
+[https://dsinjs.github.io/linked-list/](https://dsinjs.github.io/linked-list/).
+> Note: May need to use polyfills for Array.entries(), to make Linked List work in older browsers like IE11.
 
 ## Help us expand
 Let me know in issues/github page or on email which javascript functions to include in next release.

@@ -11,17 +11,30 @@
     -   [Examples][7]
 -   [LinkedList][8]
     -   [Examples][9]
--   [insert][10]
-    -   [Parameters][11]
-    -   [Examples][12]
--   [push][13]
-    -   [Parameters][14]
-    -   [Examples][15]
--   [traverse][16]
+    -   [length][10]
+        -   [Examples][11]
+-   [insert][12]
+    -   [Parameters][13]
+    -   [Examples][14]
+-   [push][15]
+    -   [Parameters][16]
     -   [Examples][17]
--   [get][18]
+-   [delete][18]
     -   [Parameters][19]
     -   [Examples][20]
+-   [pop][21]
+    -   [Examples][22]
+-   [has][23]
+    -   [Parameters][24]
+    -   [Examples][25]
+-   [traverse][26]
+    -   [Examples][27]
+-   [get][28]
+    -   [Parameters][29]
+    -   [Examples][30]
+-   [fromArray][31]
+    -   [Parameters][32]
+    -   [Examples][33]
 
 ## LinkedListElement
 
@@ -37,7 +50,7 @@ console.log(elem2.next.data); // 15
 
 ### next
 
-Type: [LinkedListElement][21]&lt;T>
+Type: [LinkedListElement][34]&lt;T>
 
 ## toJSON
 
@@ -72,7 +85,7 @@ var elem2 = new LinkedListElement(15, elem);
 elem2.toString(); // => 1530
 ```
 
-Returns **[string][22]** valid string.
+Returns **[string][35]** valid string.
 
 ## LinkedList
 
@@ -88,6 +101,17 @@ lList.delete(30);
 lList.toArray(); // => [10,20]
 ```
 
+### length
+
+Type: [number][36]
+
+#### Examples
+
+```javascript
+var lList = new LinkedList(15);
+lList.length; // => 1
+```
+
 ## insert
 
 Inserts the given element at the end of the Linked List.
@@ -99,12 +123,12 @@ Inserts the given element at the end of the Linked List.
 ### Examples
 
 ```javascript
-var elem = new LinkedListElement(30);
-var elem2 = new LinkedListElement(15, elem);
-elem2.insert(60);
+var elem = new LinkedList(30);
+elem.insert(15);
+elem.insert(60);
 ```
 
-Returns **[LinkedListElement][21]&lt;T>** newly added element instance.
+Returns **[LinkedListElement][34]&lt;T>** newly added element instance.
 
 ## push
 
@@ -117,12 +141,68 @@ Pushes the given element at the end of the Linked List.
 ### Examples
 
 ```javascript
-var elem = new LinkedListElement(30);
-var elem2 = new LinkedListElement(15, elem);
-elem2.push(60);
+var elem = new LinkedList(30);
+elem.insert(15);
+elem.insert(60);
 ```
 
-Returns **[LinkedListElement][21]&lt;T>** newly added element instance.
+Returns **[LinkedListElement][34]&lt;T>** newly added element instance.
+
+## delete
+
+Deletes the given element if present and returns element instance otherwise returns null.
+
+### Parameters
+
+-   `item` **T** New element to be pushed.
+
+### Examples
+
+```javascript
+var elem = new LinkedList(30);
+elem.insert(15);
+elem.insert(60);
+elem.delete(15); // => { data: 15, next: null }
+elem.delete(50); // null
+```
+
+Returns **([LinkedListElement][34]&lt;T> | null)** Returns deleted elemnt or null.
+
+## pop
+
+Removes last element in the linked list and returns it.
+
+### Examples
+
+```javascript
+var elem = new LinkedList(30);
+elem.insert(15);
+elem.insert(60);
+elem.pop(15); // => { data: 15, next: null }
+elem.pop(60); // null
+```
+
+Returns **([LinkedListElement][34]&lt;T> | null)** Returns deleted elemnt or null.
+
+## has
+
+Checks for given item in the entire list and returns true if available.
+
+### Parameters
+
+-   `item` **T** New element to be checked.
+
+### Examples
+
+```javascript
+var elem = new LinkedList(30);
+elem.insert(15);
+elem.insert(60);
+elem.has(15); // true
+elem.has(50); // false
+```
+
+Returns **[boolean][37]** newly added element instance.
 
 ## traverse
 
@@ -145,7 +225,7 @@ Returns element at given location.
 
 ### Parameters
 
--   `index` **[number][23]** Index to find the element.
+-   `index` **[number][36]** Index to find the element.
 
 ### Examples
 
@@ -155,6 +235,23 @@ lList.insert(30);
 lList.insert(45);
 lList.get(2); // => 45
 ```
+
+## fromArray
+
+A static method, Creates a Linked List instance from given array.
+
+### Parameters
+
+-   `array` **[Array][38]&lt;T>** Array of elements.
+
+### Examples
+
+```javascript
+var lList = LinkedList.fromArray([1, 2, 3]);
+lList.length; // => 3
+```
+
+Returns **[LinkedList][39]&lt;T>** Returns new linked list instance with all elements in array.
 
 [1]: #linkedlistelement
 
@@ -174,30 +271,62 @@ lList.get(2); // => 45
 
 [9]: #examples-3
 
-[10]: #insert
+[10]: #length
 
-[11]: #parameters
+[11]: #examples-4
 
-[12]: #examples-4
+[12]: #insert
 
-[13]: #push
+[13]: #parameters
 
-[14]: #parameters-1
+[14]: #examples-5
 
-[15]: #examples-5
+[15]: #push
 
-[16]: #traverse
+[16]: #parameters-1
 
 [17]: #examples-6
 
-[18]: #get
+[18]: #delete
 
 [19]: #parameters-2
 
 [20]: #examples-7
 
-[21]: #linkedlistelement
+[21]: #pop
 
-[22]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[22]: #examples-8
 
-[23]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
+[23]: #has
+
+[24]: #parameters-3
+
+[25]: #examples-9
+
+[26]: #traverse
+
+[27]: #examples-10
+
+[28]: #get
+
+[29]: #parameters-4
+
+[30]: #examples-11
+
+[31]: #fromarray
+
+[32]: #parameters-5
+
+[33]: #examples-12
+
+[34]: #linkedlistelement
+
+[35]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+
+[36]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
+
+[37]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
+
+[38]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
+
+[39]: #linkedlist

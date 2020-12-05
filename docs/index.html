@@ -3,7 +3,7 @@
 <head>
   <meta charset='utf-8'>
   <title>@dsinjs/linked-list 1.0.0 | Documentation</title>
-  <meta name='description' content='Binary Trees for your DS in JS'>
+  <meta name='description' content='Linked List for your DS in JS'>
   <meta name='viewport' content='width=device-width,initial-scale=1'>
   <link href='assets/bass.css' rel='stylesheet'>
   <link href='assets/style.css' rel='stylesheet'>
@@ -78,10 +78,28 @@
                 
                 <li><a
                   href='#linkedlist'
-                  class="">
+                  class=" toggle-sibling">
                   LinkedList
-                  
+                  <span class='icon'>▸</span>
                 </a>
+                
+                <div class='toggle-target display-none'>
+                  
+                  
+                    <ul class='list-reset py1-ul pl1'>
+                      <li class='h5'><span>Instance members</span></li>
+                      
+                      <li><a
+                        href='#linkedlistlength'
+                        class='regular pre-open'>
+                        #length
+                      </a></li>
+                      
+                    </ul>
+                  
+                  
+                  
+                </div>
                 
                 </li>
               
@@ -107,6 +125,36 @@
               
                 
                 <li><a
+                  href='#delete'
+                  class="">
+                  delete
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#pop'
+                  class="">
+                  pop
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#has'
+                  class="">
+                  has
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
                   href='#traverse'
                   class="">
                   traverse
@@ -120,6 +168,16 @@
                   href='#get'
                   class="">
                   get
+                  
+                </a>
+                
+                </li>
+              
+                
+                <li><a
+                  href='#fromarray'
+                  class="">
+                  fromArray
                   
                 </a>
                 
@@ -442,6 +500,72 @@ lList.toArray(); <span class="hljs-comment">// =&gt; [10,20]</span></pre>
   
 
   
+    <div class='py1 quiet mt1 prose-big'>Instance Members</div>
+    <div class="clearfix">
+  
+    <div class='border-bottom' id='linkedlistlength'>
+      <div class="clearfix small pointer toggle-sibling">
+        <div class="py1 contain">
+            <a class='icon pin-right py1 dark-link caret-right'>▸</a>
+            <span class='code strong strong truncate'>length</span>
+        </div>
+      </div>
+      <div class="clearfix display-none toggle-target">
+        <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+
+  
+    <div class='pre p1 fill-light mt0'>length</div>
+  
+    <p>
+      Type:
+      <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a>
+    </p>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">var</span> lList = <span class="hljs-keyword">new</span> LinkedList(<span class="hljs-number">15</span>);
+lList.length; <span class="hljs-comment">// =&gt; 1</span></pre>
+    
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+      </div>
+    </div>
+  
+</div>
+
+  
 
   
 
@@ -513,9 +637,9 @@ lList.toArray(); <span class="hljs-comment">// =&gt; [10,20]</span></pre>
     <div class='py1 quiet mt1 prose-big'>Example</div>
     
       
-      <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">var</span> elem = <span class="hljs-keyword">new</span> LinkedListElement(<span class="hljs-number">30</span>);
-<span class="hljs-keyword">var</span> elem2 = <span class="hljs-keyword">new</span> LinkedListElement(<span class="hljs-number">15</span>, elem);
-elem2.insert(<span class="hljs-number">60</span>);</pre>
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">var</span> elem = <span class="hljs-keyword">new</span> LinkedList(<span class="hljs-number">30</span>);
+elem.insert(<span class="hljs-number">15</span>);
+elem.insert(<span class="hljs-number">60</span>);</pre>
     
   
 
@@ -593,9 +717,241 @@ elem2.insert(<span class="hljs-number">60</span>);</pre>
     <div class='py1 quiet mt1 prose-big'>Example</div>
     
       
-      <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">var</span> elem = <span class="hljs-keyword">new</span> LinkedListElement(<span class="hljs-number">30</span>);
-<span class="hljs-keyword">var</span> elem2 = <span class="hljs-keyword">new</span> LinkedListElement(<span class="hljs-number">15</span>, elem);
-elem2.push(<span class="hljs-number">60</span>);</pre>
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">var</span> elem = <span class="hljs-keyword">new</span> LinkedList(<span class="hljs-number">30</span>);
+elem.insert(<span class="hljs-number">15</span>);
+elem.insert(<span class="hljs-number">60</span>);</pre>
+    
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='delete'>
+      delete
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Deletes the given element if present and returns element instance otherwise returns null.</p>
+
+    <div class='pre p1 fill-light mt0'>delete</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>item</span> <code class='quiet'>(T)</code>
+	    New element to be pushed.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>(<a href="#linkedlistelement">LinkedListElement</a>&#x3C;T> | null)</code>:
+        Returns deleted elemnt or null.
+
+      
+    
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">var</span> elem = <span class="hljs-keyword">new</span> LinkedList(<span class="hljs-number">30</span>);
+elem.insert(<span class="hljs-number">15</span>);
+elem.insert(<span class="hljs-number">60</span>);
+elem.delete(<span class="hljs-number">15</span>); <span class="hljs-comment">// =&gt; { data: 15, next: null }</span>
+elem.delete(<span class="hljs-number">50</span>); <span class="hljs-comment">// null</span></pre>
+    
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='pop'>
+      pop
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Removes last element in the linked list and returns it.</p>
+
+    <div class='pre p1 fill-light mt0'>pop</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code>(<a href="#linkedlistelement">LinkedListElement</a>&#x3C;T> | null)</code>:
+        Returns deleted elemnt or null.
+
+      
+    
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">var</span> elem = <span class="hljs-keyword">new</span> LinkedList(<span class="hljs-number">30</span>);
+elem.insert(<span class="hljs-number">15</span>);
+elem.insert(<span class="hljs-number">60</span>);
+elem.pop(<span class="hljs-number">15</span>); <span class="hljs-comment">// =&gt; { data: 15, next: null }</span>
+elem.pop(<span class="hljs-number">60</span>); <span class="hljs-comment">// null</span></pre>
+    
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='has'>
+      has
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>Checks for given item in the entire list and returns true if available.</p>
+
+    <div class='pre p1 fill-light mt0'>has</div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>item</span> <code class='quiet'>(T)</code>
+	    New element to be checked.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean">boolean</a></code>:
+        newly added element instance.
+
+      
+    
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">var</span> elem = <span class="hljs-keyword">new</span> LinkedList(<span class="hljs-number">30</span>);
+elem.insert(<span class="hljs-number">15</span>);
+elem.insert(<span class="hljs-number">60</span>);
+elem.has(<span class="hljs-number">15</span>); <span class="hljs-comment">// true</span>
+elem.has(<span class="hljs-number">50</span>); <span class="hljs-comment">// false</span></pre>
     
   
 
@@ -736,6 +1092,85 @@ lList.traverse(dataPrinter); <span class="hljs-comment">// =&gt; 15...20</span><
 lList.insert(<span class="hljs-number">30</span>);
 lList.insert(<span class="hljs-number">45</span>);
 lList.get(<span class="hljs-number">2</span>); <span class="hljs-comment">// =&gt; 45</span></pre>
+    
+  
+
+  
+
+  
+
+  
+
+  
+</section>
+
+          
+        
+          
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+  
+  <div class='clearfix'>
+    
+    <h3 class='fl m0' id='fromarray'>
+      fromArray
+    </h3>
+    
+    
+  </div>
+  
+
+  <p>A static method, Creates a Linked List instance from given array.</p>
+
+    <div class='pre p1 fill-light mt0'>fromArray(array: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;T>): <a href="#linkedlist">LinkedList</a>&#x3C;T></div>
+  
+  
+
+  
+  
+  
+  
+  
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Parameters</div>
+    <div class='prose'>
+      
+        <div class='space-bottom0'>
+          <div>
+            <span class='code bold'>array</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a>&#x3C;T>)</code>
+	    Array of elements.
+
+          </div>
+          
+        </div>
+      
+    </div>
+  
+
+  
+
+  
+    
+      <div class='py1 quiet mt1 prose-big'>Returns</div>
+      <code><a href="#linkedlist">LinkedList</a>&#x3C;T></code>:
+        Returns new linked list instance with all elements in array.
+
+      
+    
+  
+
+  
+
+  
+
+  
+    <div class='py1 quiet mt1 prose-big'>Example</div>
+    
+      
+      <pre class='p1 overflow-auto round fill-light'><span class="hljs-keyword">var</span> lList = LinkedList.fromArray([<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]);
+lList.length; <span class="hljs-comment">// =&gt; 3</span></pre>
     
   
 

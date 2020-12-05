@@ -1,7 +1,7 @@
 {
   "name": "@dsinjs/linked-list",
   "version": "1.0.0",
-  "description": "Binary Trees for your DS in JS",
+  "description": "Linked List for your DS in JS",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -27,9 +27,8 @@
     "Node",
     "JS",
     "DataStructure",
-    "Trees",
-    "Binary",
-    "Trees"
+    "Linked",
+    "List"
   ],
   "author": "Siddhesh Kulkarni",
   "license": "MIT",
