@@ -36,11 +36,28 @@ describe('@dsinjs/linked-list', () => {
     });
     it('insert()', (done) => {
       var lList = new LinkedList(10);
+      lList.length.should.equal(1);
       lList.insert(20);
+      lList.length.should.equal(2);
       lList.insert(30);
+      lList.length.should.equal(3);
       lList._start.next.data.should.equal(20);
       lList._start.next.next.data.should.equal(30);
       lList.length.should.equal(3);
+
+      lList.insert([40, 50]);
+      lList._start.next.next.next.data.should.equal(40);
+      lList._start.next.next.next.next.data.should.equal(50);
+      lList.length.should.equal(5);
+
+      lList.insert(new LinkedListElement(60));
+      lList._start.next.next.next.next.next.data.should.equal(60);
+      lList.length.should.equal(6);
+
+      lList.insert([new LinkedListElement(70), new LinkedListElement(80)]);
+      lList._start.next.next.next.next.next.next.data.should.equal(70);
+      lList._start.next.next.next.next.next.next.next.data.should.equal(80);
+      lList.length.should.equal(8);
       done();
     });
     it('push()', (done) => {
@@ -61,6 +78,92 @@ describe('@dsinjs/linked-list', () => {
         elem.data.should.equal(corrMatrix[index]);
       });
       lList.length.should.equal(3);
+      done();
+    });
+    it('[Symbol.iterator]()', (done) => {
+      var corrMatrix = { 0: 10, 1: 20, 2: 30 };
+      var counter = 0;
+      var lList = new LinkedList(10);
+      lList.insert(20);
+      lList.insert(30);
+      for (const item of lList) {
+        item.should.equal(corrMatrix[counter]);
+        counter++;
+      }
+      lList.length.should.equal(3);
+      done();
+    });
+    it('entries()', (done) => {
+      var corrMatrix = { 0: 10, 1: 20, 2: 30 };
+      var counter = 0;
+      var lList = new LinkedList(10);
+      lList.insert(20);
+      lList.insert(30);
+      for (const [index, item] of lList.entries()) {
+        index.should.equal(counter);
+        item.should.equal(corrMatrix[counter]);
+        counter++;
+      }
+      lList.length.should.equal(3);
+      done();
+    });
+    it('map()', (done) => {
+      var lList = new LinkedList(5);
+      lList.insert(10);
+      lList.insert(15);
+      var lList2 = lList.map(n => n * 2);
+      lList2._start.data.should.equal(10);
+      lList2._start.next.data.should.equal(20);
+      lList2._start.next.next.data.should.equal(30);
+      should.equal(lList2._start.next.next.next, null);
+      lList2.length.should.equal(3);
+
+      var lList3 = new LinkedList(5);
+      var lList4 = lList3.map(n => n * 2);
+      lList4._start.data.should.equal(10);
+      should.equal(lList4._start.next, null);
+      lList4.length.should.equal(1);
+      done();
+    });
+    it('filter()', (done) => {
+      var lList = new LinkedList(10);
+      lList.insert(20);
+      lList.insert(30);
+      lList.insert(40);
+      var modBy4Filter = n => !!(n % 4 === 0);
+      var modBy3Filter = n => !!(n % 3 === 0);
+      var tenOr20Filter = n => !!(n === 10 || n === 20);
+      var falseFilter = n => false;
+
+      var lList2 = lList.filter(modBy4Filter);
+      lList2._start.data.should.equal(20);
+      lList2._start.next.data.should.equal(40);
+      should.equal(lList2._start.next.next, null);
+      lList2.length.should.equal(2);
+
+      var lList3 = lList.filter(tenOr20Filter);
+      lList3._start.data.should.equal(10);
+      lList3._start.next.data.should.equal(20);
+      should.equal(lList2._start.next.next, null);
+      lList2.length.should.equal(2);
+
+      var lList3 = lList.filter(modBy3Filter);
+      lList3._start.data.should.equal(30);
+      should.equal(lList3._start.next, null);
+      lList3.length.should.equal(1);
+
+      var lList3 = lList.filter(falseFilter);
+      should.equal(lList3, null);
+      done();
+    });
+    it('reduce()', (done) => {
+      var lList = new LinkedList(10);
+      lList.insert(20);
+      lList.insert(30);
+      lList.length.should.equal(3);
+
+      var result = lList.reduce((next, curr) => { return next + curr; });
+      result.should.equal(60);
       done();
     });
     it('get()', (done) => {

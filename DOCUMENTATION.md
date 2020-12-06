@@ -7,38 +7,55 @@
     -   [next][3]
 -   [toJSON][4]
     -   [Examples][5]
--   [toString][6]
+-   [toJSON][6]
     -   [Examples][7]
 -   [toString][8]
     -   [Examples][9]
--   [LinkedList][10]
+-   [toString][10]
     -   [Examples][11]
-    -   [length][12]
-        -   [Examples][13]
--   [insert][14]
-    -   [Parameters][15]
-    -   [Examples][16]
--   [push][17]
-    -   [Parameters][18]
-    -   [Examples][19]
--   [delete][20]
-    -   [Parameters][21]
-    -   [Examples][22]
--   [pop][23]
-    -   [Examples][24]
--   [has][25]
-    -   [Parameters][26]
-    -   [Examples][27]
--   [traverse][28]
+-   [LinkedList][12]
+    -   [Examples][13]
+    -   [length][14]
+        -   [Examples][15]
+    -   [iterator][16]
+        -   [Examples][17]
+    -   [reduce][18]
+        -   [Parameters][19]
+        -   [Examples][20]
+-   [insert][21]
+    -   [Parameters][22]
+    -   [Examples][23]
+-   [push][24]
+    -   [Parameters][25]
+    -   [Examples][26]
+-   [delete][27]
+    -   [Parameters][28]
     -   [Examples][29]
--   [get][30]
-    -   [Parameters][31]
-    -   [Examples][32]
--   [toArray][33]
+-   [pop][30]
+    -   [Examples][31]
+-   [has][32]
+    -   [Parameters][33]
     -   [Examples][34]
--   [fromArray][35]
-    -   [Parameters][36]
-    -   [Examples][37]
+-   [traverse][35]
+    -   [Examples][36]
+-   [entries][37]
+    -   [Examples][38]
+-   [each][39]
+    -   [Examples][40]
+-   [forEach][41]
+    -   [Examples][42]
+-   [map][43]
+    -   [Examples][44]
+-   [filter][45]
+    -   [Examples][46]
+-   [get][47]
+    -   [Parameters][48]
+    -   [Examples][49]
+-   [toArray][50]
+    -   [Examples][51]
+-   [fromArray][52]
+    -   [Parameters][53]
+    -   [Examples][54]
 
 ## LinkedListElement
 
@@ -54,7 +71,7 @@ console.log(elem2.next.data); // 15
 
 ### next
 
-Type: [LinkedListElement][38]&lt;T>
+Type: [LinkedListElement][55]&lt;T>
 
 ## toJSON
 
@@ -77,6 +94,20 @@ elem2.toJSON(); // =>
 
 Returns **LinkedListElementStruct&lt;T>** valid json object.
 
+## toJSON
+
+Returns javascript root object form of the linked list.
+
+### Examples
+
+```javascript
+var lList = new LinkedList(1);
+lList.push(2);
+lList.toJSON(); // => { data: 1, next: { data: 2, next: null } }
+```
+
+Returns **LinkedListElementStruct&lt;T>** Returns javascript root object form of the linked list.
+
 ## toString
 
 Converts current element and all next elements in string format.
@@ -89,7 +120,7 @@ var elem2 = new LinkedListElement(15, elem);
 elem2.toString(); // => 1530
 ```
 
-Returns **[string][39]** valid string.
+Returns **[string][56]** valid string.
 
 ## toString
 
@@ -103,7 +134,7 @@ lList.push(2);
 lList.toString(); // => "12"
 ```
 
-Returns **[string][39]** Returns string form of the linked list.
+Returns **[string][56]** Returns string form of the linked list.
 
 ## LinkedList
 
@@ -121,7 +152,7 @@ lList.toArray(); // => [10,20]
 
 ### length
 
-Type: [number][40]
+Type: [number][57]
 
 #### Examples
 
@@ -129,6 +160,39 @@ Type: [number][40]
 var lList = new LinkedList(15);
 lList.length; // => 1
 ```
+
+### iterator
+
+Standard Iterator.
+
+#### Examples
+
+```javascript
+var lList = LinkedList.fromArray([1, 2, 3]);
+for (const item of lList.entries()) {
+  console.log(item); // => 1...2...3
+}
+```
+
+Returns **IterableIterator&lt;T>** Iterables of element values.
+
+### reduce
+
+Reduces each element value using reduceFunction and returns final value.
+
+#### Parameters
+
+-   `reduceFnc`  
+-   `initialValue` **T2** Optional, Accumulator/Initial value. (optional, default `0`)
+
+#### Examples
+
+```javascript
+var lList = LinkedList.fromArray([10, 20, 30, 40]);
+var sum = lList.reduce((acc, elem) => acc + elem); // => 100
+```
+
+Returns **T2** Returns reduced value
 
 ## insert
 
@@ -141,12 +205,12 @@ Inserts the given element at the end of the Linked List.
 ### Examples
 
 ```javascript
-var elem = new LinkedList(30);
-elem.insert(15);
-elem.insert(60);
+var lList = new LinkedList(30);
+lList.insert(15);
+lList.insert(60);
 ```
 
-Returns **[LinkedListElement][38]&lt;T>** newly added element instance.
+Returns **[LinkedListElement][55]&lt;T>** newly added element instance.
 
 ## push
 
@@ -164,7 +228,7 @@ elem.insert(15);
 elem.insert(60);
 ```
 
-Returns **[LinkedListElement][38]&lt;T>** newly added element instance.
+Returns **[LinkedListElement][55]&lt;T>** newly added element instance.
 
 ## delete
 
@@ -184,7 +248,7 @@ elem.delete(15); // => { data: 15, next: null }
 elem.delete(50); // null
 ```
 
-Returns **([LinkedListElement][38]&lt;T> | null)** Returns deleted elemnt or null.
+Returns **([LinkedListElement][55]&lt;T> | null)** Returns deleted elemnt or null.
 
 ## pop
 
@@ -200,7 +264,7 @@ elem.pop(15); // => { data: 15, next: null }
 elem.pop(60); // null
 ```
 
-Returns **([LinkedListElement][38]&lt;T> | null)** Returns deleted elemnt or null.
+Returns **([LinkedListElement][55]&lt;T> | null)** Returns deleted elemnt or null.
 
 ## has
 
@@ -220,7 +284,7 @@ elem.has(15); // true
 elem.has(50); // false
 ```
 
-Returns **[boolean][41]** newly added element instance.
+Returns **[boolean][58]** newly added element instance.
 
 ## traverse
 
@@ -237,13 +301,88 @@ lList.traverse(dataPrinter); // => 15...20
 
 Returns **void** Returns undefined.
 
+## entries
+
+Returns an iterable of key, value pairs for element in the Linked List.
+
+### Examples
+
+```javascript
+var lList = LinkedList.fromArray([1, 2, 3]);
+for (const [index, item] of lList.entries()) {
+  console.log(index, item); // => 0 1...1 2...2 3
+}
+```
+
+Returns **IterableIterator&lt;\[[number][57], T]>** Iterables of index keys and values.
+
+## each
+
+Traverses the whole list and calls given callback function for each element.
+
+### Examples
+
+```javascript
+var dataPrinter = (el) => { console.log(el.data); };
+var lList = new LinkedList(15);
+lList.insert(30);
+lList.each(dataPrinter); // => 15...20
+```
+
+Returns **void** Returns undefined.
+
+## forEach
+
+Traverses the whole list and calls given callback function for each element.
+
+### Examples
+
+```javascript
+var dataPrinter = (el) => { console.log(el.data); };
+var lList = new LinkedList(15);
+lList.insert(30);
+lList.forEach(dataPrinter); // => 15...20
+```
+
+Returns **void** Returns undefined.
+
+## map
+
+Maps current linked list values to a new linked list with modifying the values using given callback function.
+Uses BFS.
+
+### Examples
+
+```javascript
+var lList = LinkedList.fromArray([10, 20, 30, 40]);
+var lList2 = lList.map(n => n * 2);
+var arr2 = lList2.toArray(); // [20, 40, 60, 80]
+```
+
+Returns **[LinkedList][59]&lt;T>** A newly mapped linked list.
+
+## filter
+
+Filters each item based on given filter function and returns new linked list.
+If no value is filtered then returns null.
+
+### Examples
+
+```javascript
+var lList = LinkedList.fromArray([10, 20, 30, 40]);
+var lList2 = lList.filter(n => !!(n % 4 === 0));
+var arr2 = lList2.toArray(); // [20, 40]
+```
+
+Returns **([LinkedList][59]&lt;T> | null)** New filtered instance of tree or null.
+
 ## get
 
 Returns element at given location.
 
 ### Parameters
 
--   `index` **[number][40]** Index to find the element.
+-   `index` **[number][57]** Index to find the element.
 
 ### Examples
 
@@ -267,7 +406,7 @@ lList.push(3);
 lList.toArray(); // => [1, 2, 3]
 ```
 
-Returns **[Array][42]&lt;T>** Returns array form of the linked list.
+Returns **[Array][60]&lt;T>** Returns array form of the linked list.
 
 ## fromArray
 
@@ -275,7 +414,7 @@ A static method, Creates a Linked List instance from given array.
 
 ### Parameters
 
--   `array` **[Array][42]&lt;T>** Array of elements.
+-   `array` **[Array][60]&lt;T>** Array of elements.
 
 ### Examples
 
@@ -284,7 +423,7 @@ var lList = LinkedList.fromArray([1, 2, 3]);
 lList.length; // => 3
 ```
 
-Returns **[LinkedList][43]&lt;T>** Returns new linked list instance with all elements in array.
+Returns **[LinkedList][59]&lt;T>** Returns new linked list instance with all elements in array.
 
 [1]: #linkedlistelement
 
@@ -296,78 +435,112 @@ Returns **[LinkedList][43]&lt;T>** Returns new linked list instance with all ele
 
 [5]: #examples-1
 
-[6]: #tostring
+[6]: #tojson-1
 
 [7]: #examples-2
 
-[8]: #tostring-1
+[8]: #tostring
 
 [9]: #examples-3
 
-[10]: #linkedlist
+[10]: #tostring-1
 
 [11]: #examples-4
 
-[12]: #length
+[12]: #linkedlist
 
 [13]: #examples-5
 
-[14]: #insert
+[14]: #length
 
-[15]: #parameters
+[15]: #examples-6
 
-[16]: #examples-6
+[16]: #iterator
 
-[17]: #push
+[17]: #examples-7
 
-[18]: #parameters-1
+[18]: #reduce
 
-[19]: #examples-7
+[19]: #parameters
 
-[20]: #delete
+[20]: #examples-8
 
-[21]: #parameters-2
+[21]: #insert
 
-[22]: #examples-8
+[22]: #parameters-1
 
-[23]: #pop
+[23]: #examples-9
 
-[24]: #examples-9
+[24]: #push
 
-[25]: #has
+[25]: #parameters-2
 
-[26]: #parameters-3
+[26]: #examples-10
 
-[27]: #examples-10
+[27]: #delete
 
-[28]: #traverse
+[28]: #parameters-3
 
 [29]: #examples-11
 
-[30]: #get
+[30]: #pop
 
-[31]: #parameters-4
+[31]: #examples-12
 
-[32]: #examples-12
+[32]: #has
 
-[33]: #toarray
+[33]: #parameters-4
 
 [34]: #examples-13
 
-[35]: #fromarray
+[35]: #traverse
 
-[36]: #parameters-5
+[36]: #examples-14
 
-[37]: #examples-14
+[37]: #entries
 
-[38]: #linkedlistelement
+[38]: #examples-15
 
-[39]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+[39]: #each
 
-[40]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
+[40]: #examples-16
 
-[41]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
+[41]: #foreach
 
-[42]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
+[42]: #examples-17
 
-[43]: #linkedlist
+[43]: #map
+
+[44]: #examples-18
+
+[45]: #filter
+
+[46]: #examples-19
+
+[47]: #get
+
+[48]: #parameters-5
+
+[49]: #examples-20
+
+[50]: #toarray
+
+[51]: #examples-21
+
+[52]: #fromarray
+
+[53]: #parameters-6
+
+[54]: #examples-22
+
+[55]: #linkedlistelement
+
+[56]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String
+
+[57]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
+
+[58]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
+
+[59]: #linkedlist
+
+[60]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
